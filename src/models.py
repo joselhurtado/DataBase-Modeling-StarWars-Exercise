@@ -13,20 +13,15 @@ class User(Base):
      # Here we define columns for the table User
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
-    first_name = Column(String(250))
-    last_name = Column(String(250))
+    first_name = Column(String(250), nullable=False)
+    last_name = Column(String(250), nullable=False)
     email = Column(String(200))
     password = Column(String, primary_key=True)
     register_date = Column(String)
-
-class Favorites:
-    __tablename__ = 'favorites'
-    # Here we define columns for the table favorites.
-    # Notice that each column is also a normal Python instance attribute.
-    available_favs = Column(String(200))
-    character_id - Column(String(150))
-    starship_id - Column(String(150))
-    planet_id - Column(String(150))
+    available_favs = Column(String)
+    character_id = Column(String(150))
+    starship_id = Column(String(150))
+    planet_id = Column(String(150))
 
 
     def to_dict(self):

@@ -8,41 +8,56 @@ from eralchemy import render_er
 
 Base = declarative_base()
 
-class Character(Base):
-    __tablename__ = 'character'
-    character_id = Column(Integer, primary_key=True)
-    characterName = Column(String(150))
-
-class Planet(Base):
-    __tablename__ = 'planet'
-    planet_id = Column(Integer, primary_key=True)
-    planetName = Column(String(150))
-
-class Starship(Base):
-    __tablename__ = 'starship'
-    starship_id = Column(Integer, primary_key=True)
-    planetName = Column(String(150))
-
-class Favorites(Base):
-    __tablename__ = 'favorites'
-    available_favs = Column(String)
-    userId = Column(Integer, primary_key=True)
-    character_id = Column(Integer, primary_key=True)
-    starship_id = Column(Integer, primary_key=True)
-    planet_id = Column(Integer, primary_key=True)
-
 class User(Base):
     __tablename__ = 'user'
-    # Here we define columns for the table User
+    # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
-    available_favs = Column(String)
-    userId = Column(Integer, primary_key=True)
-    first_name = Column(String(250), nullable=False)
-    last_name = Column(String(250), nullable=False)
-    email = Column(String(200))
-    password = Column(String, primary_key=True)
-    register_date = Column(String)
+    id = Column(Integer, primary_key=True)
+    email = Column(String(250), nullable=False)
+    password = Column(String(250), nullable=False)
+    
+    class Planet(Base):
+        __tablename__ = 'planet'
+        id = Column(Integer, primary_key=True)
+        name = Column(String(250), nullable=False)
+    
+    class Planet_Fav(Base):
+        __tablename__ = 'planet_fav'
+    # Here we define columns for the table address.
+        id = Column(Integer, primary_key=True)
+        user_id = Column(Integer, ForeignKey('user.id'))
+        planet_id = Column(Integer, ForeignKey('planet.id'))
+        
+        def to_dict(self):
+            return {}
+    
+    class Character(Base):
+        __tablename__ = 'character'
+        id = Column(Integer, primary_key=True)
+        name = Column(String(250), nullable=False)
+    
+    class Character_Fav(Base):
+        __tablename__ = 'character_fav'
+    # Here we define columns for the table address.
+        id = Column(Integer, primary_key=True)
+        user_id = Column(Integer, ForeignKey('user.id'))
+        character_id = Column(Integer, ForeignKey('character.id'))
+    
+    def to_dict(self):
+        return {}
 
+    class Starship(Base):
+        __tablename__ = 'starship'
+        id = Column(Integer, primary_key=True)
+        name = Column(String(250), nullable=False)
+    
+    class Starship_Fav(Base):
+        __tablename__ = 'starship_fav'
+    # Here we define columns for the table address.
+        id = Column(Integer, primary_key=True)
+        user_id = Column(Integer, ForeignKey('user.id'))
+        starship_id = Column(Integer, ForeignKey('starship.id'))
+    
     def to_dict(self):
         return {}
 

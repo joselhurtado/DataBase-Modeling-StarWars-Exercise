@@ -1,4 +1,4 @@
-# Create the database model for StarWars blog July28
+# Create the database model for StarWars blog
 
 **Important**: To do this activity you need to `fork` this repo into your **Github** account and then open the forked repo on Gitpod.
 

@@ -13,6 +13,8 @@ class User(Base):
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
+    name = Column(String(30))
+    fullname = Column(String)
     email = Column(String(250), nullable=False)
     password = Column(String(250), nullable=False)
     
@@ -23,9 +25,8 @@ class User(Base):
     
     class Planet_Fav(Base):
         __tablename__ = 'planet_fav'
-    # Here we define columns for the table address.
-        id = Column(Integer, primary_key=True)
         user_id = Column(Integer, ForeignKey('user.id'))
+        id = Column(Integer, primary_key=True)
         planet_id = Column(Integer, ForeignKey('planet.id'))
         
         def to_dict(self):
@@ -38,9 +39,8 @@ class User(Base):
     
     class Character_Fav(Base):
         __tablename__ = 'character_fav'
-    # Here we define columns for the table address.
-        id = Column(Integer, primary_key=True)
         user_id = Column(Integer, ForeignKey('user.id'))
+        id = Column(Integer, primary_key=True)
         character_id = Column(Integer, ForeignKey('character.id'))
     
     def to_dict(self):
@@ -53,9 +53,8 @@ class User(Base):
     
     class Starship_Fav(Base):
         __tablename__ = 'starship_fav'
-    # Here we define columns for the table address.
-        id = Column(Integer, primary_key=True)
         user_id = Column(Integer, ForeignKey('user.id'))
+        id = Column(Integer, primary_key=True)
         starship_id = Column(Integer, ForeignKey('starship.id'))
     
     def to_dict(self):

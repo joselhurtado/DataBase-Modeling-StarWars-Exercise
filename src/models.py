@@ -35,6 +35,7 @@ class User(Base):
     __tablename__ = 'user'
     # Here we define columns for the table User
     # Notice that each column is also a normal Python instance attribute.
+    available_favs = Column(String)
     userId = Column(Integer, primary_key=True)
     first_name = Column(String(250), nullable=False)
     last_name = Column(String(250), nullable=False)
